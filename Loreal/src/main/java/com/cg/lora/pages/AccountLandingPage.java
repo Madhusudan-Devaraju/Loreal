@@ -1,5 +1,7 @@
 package com.cg.lora.pages;
 
-public class AccountLandingPage {
+import com.cg.lora.base.TestBase;
+
+public class AccountLandingPage extends TestBase{
 
 }

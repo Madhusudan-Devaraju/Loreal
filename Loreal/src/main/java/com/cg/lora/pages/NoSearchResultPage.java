@@ -1,5 +1,7 @@
 package com.cg.lora.pages;
 
-public class NoSearchResultPage {
+import com.cg.lora.base.TestBase;
+
+public class NoSearchResultPage extends TestBase {
 
 }

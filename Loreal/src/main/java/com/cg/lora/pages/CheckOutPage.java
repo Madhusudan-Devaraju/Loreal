@@ -1,5 +1,7 @@
 package com.cg.lora.pages;
 
-public class CheckOutPage {
+import com.cg.lora.base.TestBase;
+
+public class CheckOutPage extends TestBase{
 
 }

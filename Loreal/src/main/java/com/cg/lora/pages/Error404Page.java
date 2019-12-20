@@ -1,5 +1,7 @@
 package com.cg.lora.pages;
 
-public class Error404Page {
+import com.cg.lora.base.TestBase;
+
+public class Error404Page extends TestBase{
 
 }

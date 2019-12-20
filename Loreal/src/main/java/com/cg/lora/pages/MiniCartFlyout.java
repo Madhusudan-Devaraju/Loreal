@@ -1,5 +1,7 @@
 package com.cg.lora.pages;
 
-public class MiniCartFlyout {
+import com.cg.lora.base.TestBase;
+
+public class MiniCartFlyout extends TestBase{
 
 }

@@ -1,5 +1,7 @@
 package com.cg.lora.pages;
 
-public class CartPage {
+import com.cg.lora.base.TestBase;
+
+public class CartPage extends TestBase {
 
 }
