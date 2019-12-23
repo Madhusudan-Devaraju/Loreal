@@ -1,5 +1,5 @@
 package com.cg.lora.testCases;
 
-public class LoginTest {
+public class LoginPageTest {
 
 }

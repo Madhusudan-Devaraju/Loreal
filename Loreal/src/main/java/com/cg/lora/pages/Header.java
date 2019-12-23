@@ -1,5 +1,7 @@
 package com.cg.lora.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
@@ -32,8 +34,20 @@ public class Header extends TestBase {
 	@FindBy(xpath = "//div[@class='icon-cart']")
 	private WebElement miniCartIcon;
 
-	@FindBy(xpath = "//a[@class='js-first-level-menu']")
-	private WebElement rootCatLinks;
+//	@FindBy(xpath = "//a[@class='js-first-level-menu']")
+//	private WebElement rootCatLinks;
+
+	@FindBy(xpath = "//li[contains(@class,' has-drop')]")
+	private List<WebElement> catLinksWithFlyout;
+
+//	@FindBy(xpath = "//li[@class='top-level  ']")
+//	List<WebElement> catLinksWithoutFlyout;
+
+	@FindBy(xpath = "//div[contains(@class,'active_submenu')]")
+	private WebElement activeFlyout;
+
+	@FindBy(xpath = "//li[contains(@class, 'top-level  ')]")
+	private List<WebElement> allCatLinks;
 
 	public Header() {
 		PageFactory.initElements(driver, this);
@@ -57,7 +71,7 @@ public class Header extends TestBase {
 		searchBox.sendKeys(keyword);
 
 		Actions action = new Actions(driver);
-		action.sendKeys(Keys.ENTER);
+		action.sendKeys(Keys.ENTER).perform();
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='pink-text'])[2]")));
@@ -121,6 +135,34 @@ public class Header extends TestBase {
 		return url; // url: https://www.loreal-paris.fr/cart/
 	}
 
-//	8.
+//	8.Verify mega-menu is displayed when hovered on root cat links.
+	public boolean megaMenuDiaplay(String catLink) {
+
+		boolean b = false;
+		Actions action = new Actions(driver);
+		for (int i = 0; i < catLinksWithFlyout.size(); i++) {
+			if (catLink.equalsIgnoreCase(catLinksWithFlyout.get(i).getText())) {
+				action.moveToElement(catLinksWithFlyout.get(i)).perform();
+				activeFlyout.isDisplayed();
+				b = true;
+			}
+
+			else
+				b = false;
+		}
+		return b;
+
+	}
+
+//	9. Verify user is redirected to respective cat landing page when clicked on links in header.
+	public String catLandingPage(String catLink) {
+		for (int i = 0; i < allCatLinks.size(); i++)
+			if (catLink.equalsIgnoreCase(allCatLinks.get(i).getText())) {
+				allCatLinks.get(i).click();
+				break;
+			}
+		String url = driver.getCurrentUrl();
+		return url;
+	}
 
 }

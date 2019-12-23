@@ -1,6 +1,7 @@
 package com.cg.lora.base;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -18,11 +19,16 @@ public class TestBase {
 	public static WebDriver driver;
 	public static Properties prop;
 
-	public void getPropertyFile() throws IOException {
+	public static void getPropertyFile() {
 		String propFilePath = "D:\\SeleniumProjectsWorkSpace\\Loreal\\Loreal\\src\\main\\java\\com\\cg\\lora\\config\\config.properties";
-		prop = new Properties();
-		FileInputStream fis = new FileInputStream(propFilePath);
-		prop.load(fis);
+
+		try {
+			prop = new Properties();
+			FileInputStream fis = new FileInputStream(propFilePath);
+			prop.load(fis);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void initialization() {
@@ -46,7 +52,7 @@ public class TestBase {
 		driver.manage().timeouts().pageLoadTimeout(GenericUtilities.pageLoadTimeOut, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(GenericUtilities.implicitlyWait, TimeUnit.SECONDS);
 
-		prop.getProperty("url");
+		driver.get(prop.getProperty("HomePageUrl"));
 
 	}
 }
