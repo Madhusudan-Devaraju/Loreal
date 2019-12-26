@@ -3,6 +3,7 @@ package com.cg.lora.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.DataProvider;
 
 import com.cg.lora.base.TestBase;
 
@@ -22,13 +23,18 @@ public class LoginPage extends TestBase {
 
 	@FindBy(xpath = "//a[text()= 'Je m’inscris']")
 	private WebElement signUpBtn;
+	
+	@FindBy (xpath = "//div[@class= 'error-text']")
+	private WebElement invalidCredErrorMsg;
+	
+	
 
 	public LoginPage() {
 		PageFactory.initElements(driver, this);
 	}
 
 //	Verify user login into app using valid credentials.
-	public String Login() {
+	public String validLogin() {
 		username.sendKeys(prop.getProperty("ValidUsername"));
 		pwd.sendKeys(prop.getProperty("ValidPassword"));
 		loginSubmitBtn.click();
@@ -36,6 +42,7 @@ public class LoginPage extends TestBase {
 		return url; // url: Landing and Profile Page:
 					// https://www.loreal-paris.fr/compte/accountdetails
 	}
+	
 
 //	Verify user is redirected to forgot pwd page upon clicking forgot pwd link.
 	public String clickOnResetPWDLink() {
@@ -45,11 +52,11 @@ public class LoginPage extends TestBase {
 	}
 
 //	Verify user can login using invalid credentials.
-	public String inValidCredentailsLogin() {
-		username.sendKeys(prop.getProperty("InValidUsername"));
-		pwd.sendKeys(prop.getProperty("Pass123$$"));
-		loginSubmitBtn.click();
-	}
-	
-	//use data driven testing for testing login
+//	public String inValidCredentailsLogin() {
+//		username.sendKeys(prop.getProperty("InValidUsername"));
+//		pwd.sendKeys(prop.getProperty("Pass123$$"));
+//		loginSubmitBtn.click();
+//	}
+
+	// use data driven testing for testing login
 }

@@ -1,5 +1,8 @@
 package com.cg.lora.testCases;
 
-public class LoginPageTest {
+import com.cg.lora.base.TestBase;
+
+public class LoginPageTest extends TestBase{
+	
 
 }
